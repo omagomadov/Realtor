@@ -1,39 +1,41 @@
-from odoo import models,fields
+from odoo import models,fields, api
+from odoo.exceptions import ValidationError
 
 class Apartment(models.Model):
-    #The technical name.
     _name = 'apartment' 
-    #Check constraint for the price 
-    _sql_constraints = [
-        ('price_check','CHECK (price > 0)','The price must be greater than 0 ! '),
-        ('surface_apartement_check','CHECK(surface_apartment > 0)' ,'The surface of the apartment must be greater than 0 !'),
-        ('surface_terrace_check','CHECK(surface_terrace > 0)','The surface of the terrace must be greater than 0 !')
-        ]
+    _sql_constraints = [('unique_name', 'unique(name)', 'An apartment with the same name exist')]
 
-    #The name of the apartment (Unique name).
-    name = fields.Char(unique=True, string="Nom")
-    #The description of the apartment.
+    name = fields.Char(unique=True, string="Name")
     description = fields.Text(string="Description") 
-    #The image of the apartment.
-    image = fields.Image(max_height = 100, max_width = 100, string="Photo") 
-    #The minimum date of availabilty for the apartment !TO-CHANGE!
-    available_date = fields.Date(string="Date de disponibilité") 
-    #The price of the apartment.
-    price = fields.Integer(string="Prix")
-    #The surface in m² of the apartment.
-    surface_apartment = fields.Integer(string="Surface de l'appartement")
-    #The surface in m² of the terrace.
-    surface_terrace = fields.Integer(string="Surface de la terrasse")
-    #The total surface of the apartment.
-    total_surface = fields.Integer(compute = '_calculate_total_surface', string="Surface totale")
-    #Buyer of the apartment - An apartment is bought by only one buyer.
-    buyer_id = fields.Many2one('res.partner', string='Acheteur')
+    image = fields.Image(max_height = 100, max_width = 100, string="Picture") 
+    available_date = fields.Date(string="Available date") 
+    price = fields.Integer(string="Price")
+    surface_apartment = fields.Integer(string="Surface of the apartment")
+    surface_terrace = fields.Integer(string="Surface of the terrace")
+    total_surface = fields.Integer(compute = '_calculate_total_surface', string="Total surface")
+    buyer_id = fields.Many2one('res.partner', string='Buyer')
 
-    #Computes the total surface according the surface apartment and the terrace surface.
     def _calculate_total_surface(self):
         for record in self :
             record.total_surface = record.surface_apartment + record.surface_terrace
 
+    @api.constrains('price')
+    def _check_price(self) :
+        for record in self :
+            if record.price <= 0 :
+                raise ValidationError('Price must be greater than 0')
+    
+    @api.constrains('surface_apartment')
+    def _check_surface_apartment(self) :
+        for record in self :
+            if record.surface_apartment <= 0 :
+                raise ValidationError('Surface apartment must be greater than 0')
+    
+    @api.constrains('surface_terrace')
+    def _check_surface_terrace(self) :
+        for record in self :
+            if record.surface_terrace <= 0 :
+                raise ValidationError('Surface terrace must be greater than 0')
      
 
 
