@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="realtor_menu" model="ir.actions.act_window">
+        <field name="name">Realtor menu</field>
+        <field name="res_model">apartment</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_realtor" name="Realtor" action="realtor_menu"/>
+</odoo>
