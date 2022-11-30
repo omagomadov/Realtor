@@ -8,7 +8,7 @@ class Apartment(models.Model):
     name = fields.Char(unique=True, string="Name")
     description = fields.Text(string="Description") 
     image = fields.Image(max_height = 100, max_width = 100, string="Picture") 
-    available_date = fields.Date(string="Available date") 
+    available_date = fields.Datetime(string="Available date") 
     price = fields.Integer(string="Price")
     surface_apartment = fields.Integer(string="Surface of the apartment")
     surface_terrace = fields.Integer(string="Surface of the terrace")
@@ -36,6 +36,12 @@ class Apartment(models.Model):
         for record in self :
             if record.surface_terrace <= 0 :
                 raise ValidationError('Surface terrace must be greater than 0')
+
+    @api.constrains('available_date')
+    def _check_available_date(self) :
+        for record in self :
+            if record.create_date.year == record.available_date.year and record.create_date.month + 3 > record.available_date.month :
+                raise ValidationError('Available date must be minimum 3 month after the creation of the apartment')
      
 
 
