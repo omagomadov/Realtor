@@ -1,13 +1,12 @@
 from odoo import models,fields, api
 from odoo.exceptions import ValidationError
-import logging
 
 class Apartment(models.Model):
     _name = 'apartment' 
+    _description = 'Apartment'
     _sql_constraints = [('unique_name', 'unique(name)', 'An apartment with the same name exist')]
-    _logger = logging.getLogger(__name__)
 
-    name = fields.Char(unique=True, string="Name")
+    name = fields.Char(string="Name")
     description = fields.Text(string="Description") 
     image = fields.Image(max_height = 100, max_width = 100, string="Picture") 
     available_date = fields.Datetime(string="Available date") 

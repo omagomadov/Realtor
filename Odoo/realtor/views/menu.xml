@@ -2,18 +2,10 @@
 <odoo>
 
     <record id="realtor_menu" model="ir.actions.act_window">
-        <field name="name">Realtor menu</field>
+        <field name="name">The list of apartments</field>
         <field name="res_model">apartment</field>
         <field name="view_mode">tree,form</field>
     </record>
-
-    <record id="res_partner_menu" model="ir.actions.act_window">
-        <field name="name">Buyers menu</field>
-        <field name="res_model">res.partner</field>
-        <field name="view_mode">tree,form</field>
-    </record>
     
-    <menuitem id="menu_realtor" name="Realtor" action="realtor_menu">
-        <menuitem id="menu_buyers" name="Buyers" action="res_partner_menu"/>
-    </menuitem>
+    <menuitem id="menu_realtor" name="Realtor" action="realtor_menu"/>
 </odoo>
