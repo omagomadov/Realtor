@@ -1,9 +1,11 @@
 from odoo import models,fields, api
 from odoo.exceptions import ValidationError
+import logging
 
 class Apartment(models.Model):
     _name = 'apartment' 
     _sql_constraints = [('unique_name', 'unique(name)', 'An apartment with the same name exist')]
+    _logger = logging.getLogger(__name__)
 
     name = fields.Char(unique=True, string="Name")
     description = fields.Text(string="Description") 
@@ -13,11 +15,29 @@ class Apartment(models.Model):
     surface_apartment = fields.Integer(string="Surface of the apartment")
     surface_terrace = fields.Integer(string="Surface of the terrace")
     total_surface = fields.Integer(compute = '_calculate_total_surface', string="Total surface")
-    buyer_id = fields.Many2one('res.partner', string='Buyer')
+    buyer = fields.Char(string="Buyer with the best offer", readonly=True, default=None, compute='_find_buyer')
+    offer = fields.Integer(string="Highest offer", readonly=True, default=0)
+
 
     def _calculate_total_surface(self):
         for record in self :
             record.total_surface = record.surface_apartment + record.surface_terrace
+
+    def _find_buyer(self) :
+        for record in self :
+            record.buyer = None
+            record.offer = 0
+            min_offer = (record.price / 100) * 90
+            buyers = self.env['res.partner'].search([("apartment", "in", record.name)])
+            best_buyer = None
+            offer = 0
+            for buyer in buyers :
+                if buyer.offered_price > offer and buyer.offered_price >= min_offer :
+                    offer = buyer.offered_price
+                    best_buyer = buyer.name
+            record.buyer = best_buyer
+            record.offer = offer
+            
 
     @api.constrains('price')
     def _check_price(self) :

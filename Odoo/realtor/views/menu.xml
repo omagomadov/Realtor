@@ -7,5 +7,25 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <menuitem id="menu_realtor" name="Realtor" action="realtor_menu"/>
+    <record id="res_partner_menu" model="ir.actions.act_window">
+        <field name="name">Buyers menu</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="res_partner_view" model="ir.ui.view">
+        <field name="name">Res partner view</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <field name="category_id" position="after">
+                <field name="offered_price"/>
+                <field name="apartment"/>
+            </field>
+        </field>
+    </record>
+
+    <menuitem id="menu_realtor" name="Realtor" action="realtor_menu">
+        <menuitem id="menu_buyers" name="Buyers" action="res_partner_menu"/>
+    </menuitem>
 </odoo>
