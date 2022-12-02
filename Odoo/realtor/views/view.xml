@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <record id="MODEL_view_TYPE" model="ir.ui.view">
+    <record id="apartment_view_form" model="ir.ui.view">
         <field name="name">Apartment form</field>
         <field name="model">apartment</field>
         <field name="arch" type="xml">
             <form>
                 <sheet>
                     <group col="2">
-                        <group>
+                        <group col="2">
                             <field name="name">Name</field>
                             <field name="description">description</field>
                             <field name="image">image</field>
                             <field name="available_date">Available date</field>
                             <field name="price">price</field>
                         </group>
-                        <group>
+                        <group col="3">
                             <field name="surface_apartment">Surface of apartment</field>
                             <field name="surface_terrace">Surface of terrace</field>
                             <field name="total_surface">Total surface</field>
@@ -24,6 +24,19 @@
                     </group>
                 </sheet>
             </form>
+        </field>
+    </record>
+
+    <record id="apartment_view_tree" model="ir.ui.view">
+        <field name="name">Apartment tree</field>
+        <field name="model">apartment</field>
+        <field name="arch" type="xml">
+            <tree decoration-muted="description,available_date,price">
+                <field name="name" decoration-info="name" string="Name"/>
+                <field name="description" string="description" width="3"/>
+                <field name="available_date" string="available_date" width="3"/>
+                <field name="price" string="price" width="3"/>
+            </tree>
         </field>
     </record>
 </odoo>
