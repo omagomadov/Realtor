@@ -8,7 +8,7 @@ class Apartment(models.Model):
 
     name = fields.Char(string="Name")
     description = fields.Text(string="Description") 
-    image = fields.Image(max_height = 100, max_width = 100, string="Picture") 
+    image = fields.Image(max_height = 500, max_width = 500, string="Picture")
     available_date = fields.Datetime(string="Available date") 
     price = fields.Integer(string="Price")
     surface_apartment = fields.Integer(string="Surface of the apartment")
