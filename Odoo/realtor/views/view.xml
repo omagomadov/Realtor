@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="MODEL_view_TYPE" model="ir.ui.view">
+        <field name="name">Apartment form</field>
+        <field name="model">apartment</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group col="2">
+                        <group>
+                            <field name="name">Name</field>
+                            <field name="description">description</field>
+                            <field name="image">image</field>
+                            <field name="available_date">Available date</field>
+                            <field name="price">price</field>
+                        </group>
+                        <group>
+                            <field name="surface_apartment">Surface of apartment</field>
+                            <field name="surface_terrace">Surface of terrace</field>
+                            <field name="total_surface">Total surface</field>
+                            <field name="buyer">Buyer</field>
+                            <field name="offer">Offer</field>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
