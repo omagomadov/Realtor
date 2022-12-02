@@ -21,7 +21,7 @@ def welcome():
 
 
 # Asks credentials
-def askCredential():
+def ask_credential():
     global username
     global password
     username = input("Enter your login : ")
@@ -38,7 +38,7 @@ def connect(username, password):
         uid = common.authenticate(db, username, password, {})
         if not uid:
             print("Wrong credential")
-            askCredential()
+            ask_credential()
         else:
             print("Successfully connected")
             search(db, uid, password)
@@ -71,4 +71,4 @@ def search(db, uid, password):
 
 if __name__ == '__main__':
     welcome()
-    askCredential()
+    ask_credential()
