@@ -10,7 +10,7 @@
                         <group col="2">
                             <field name="name">Name</field>
                             <field name="description">description</field>
-                            <field name="image" widget="image">image</field>
+                            <field name="image" widget="image"/>
                             <field name="available_date">Available date</field>
                             <field name="price">price</field>
                         </group>
