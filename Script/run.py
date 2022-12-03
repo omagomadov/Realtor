@@ -24,9 +24,12 @@ def welcome():
 def ask_credential():
     global username
     global password
-    username = input("Enter your login : ")
-    password = getpass.getpass("Enter your password : ")
-    connect(username, password)
+    try:
+        username = input("Enter your login : ")
+        password = getpass.getpass("Enter your password : ")
+        connect(username, password)
+    except KeyboardInterrupt:
+        print("Exited")
 
 
 # Connects using given credential
