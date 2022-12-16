@@ -19,7 +19,7 @@
     'version': '1.0',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['base', 'stock'],
 
     # always loaded
     'data': [
@@ -30,8 +30,8 @@
     ],
     # only loaded in demonstration mode
     'demo': [
-        #'demo/demo.xml',
+        # 'demo/demo.xml',
     ],
 
-    'application' : True, 
+    'application': True,
 }
