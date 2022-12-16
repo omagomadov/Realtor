@@ -81,4 +81,43 @@
     </record>
 
 
+    <!--**************Inventory Module*****************-->
+
+    <!-- Resource: stock.inventory -->
+    <record id="stock_apartment_inventory_0" model="stock.inventory">
+      <field name="name">Apartment Inventory</field>
+    </record>
+
+    <!-- Resource: stock.inventory.line -->
+    <record id="stock_apartment_inventory_line_1" model="stock.inventory.line">
+        <field name="product_id" ref="product.apartment_02"/>
+        <field name="product_uom_id" ref="uom.product_uom_unit"/>
+        <field name="inventory_id" ref="stock_apartment_inventory_0"/>
+        <field name="product_qty">1</field>
+        <field name="location_id" model="stock.location" eval="obj().env.ref('stock.warehouse0').lot_stock_id.id"/>
+    </record>
+
+    <function model="stock.inventory" name="_action_start">
+      <function eval="[[('state','=','draft'),('id', '=', ref('stock_inventory_0'))]]" model="stock.inventory" name="search"/>
+    </function>
+
+    <function model="stock.inventory" name="action_validate">
+      <function eval="[[('state','=','confirm'),('id', '=', ref('stock_inventory_0'))]]" model="stock.inventory" name="search"/>
+    </function>
+
+    <!-- Resource: product.product -->
+    <record id="product.apartment_02" model="product.product">
+      <field name="name">Apartment Ciao</field>
+      <field name="apartment_product" ref="apartment02"/>
+    </record>
+  
+  
+    
+
+
+
+
+
+
+
 </odoo>
