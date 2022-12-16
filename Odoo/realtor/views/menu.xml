@@ -6,6 +6,6 @@
         <field name="res_model">apartment</field>
         <field name="view_mode">tree,form</field>
     </record>
-    
+
     <menuitem id="menu_realtor" name="Realtor" action="realtor_menu"/>
 </odoo>
