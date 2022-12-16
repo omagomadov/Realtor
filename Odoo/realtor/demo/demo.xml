@@ -66,7 +66,7 @@
           <field name="offered_price">170000</field>
         </record>
 
-        <!-- Potental buyers of apartments-->
+      <!-- Potentials buyers of apartments-->
         <record model="res.partner" id="buyer03">
           <field name="name">Ahmed</field>
         </record>
@@ -74,6 +74,11 @@
         <record model="res.partner" id="buyer04">
           <field name="name">Mohamed</field>
         </record>
+
+      <!-- Immobilier ESI -->
+      <record model="res.partner" id="real_estate01">
+          <field name="name">Immobilier ESI</field>
+      </record>
 
 
 </odoo>
