@@ -83,16 +83,6 @@
 
   <!--**************Inventory Module*****************-->
 
-
-  <!--stock inventory-->
-  <record id="stock_apart_0" model="stock.inventory">
-    <field name="name">Apartment Inventory</field>
-    <field name="product_ids"  eval="[(6, 0,
-     [ ref('product_0'),ref('product_1'),ref('product_2'),
-    ref('product_3'),ref('product_4')])]"/>
-  </record>
-
-
   <!--products-->
   <record id="product_0" model="product.template">
     <field name="name">Apartment Hello World </field>
@@ -122,6 +112,14 @@
     <field name="name">Apartment Hola </field>
     <field name="apartment_product" ref="apartment04" />
     <field name="type">product</field>
+  </record>
+
+   <!--stock inventory-->
+  <record id="stock_apart_0" model="stock.inventory">
+    <field name="name">Apartment Inventory</field>
+    <field name="product_ids"  eval="[(6, 0,
+     [ ref('product_0'),ref('product_1'),ref('product_2'),
+    ref('product_3'),ref('product_4')])]"/>
   </record>
 
 
