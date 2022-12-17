@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+  <!-- Apartments records -->
+  <record id="apartment0" model="apartment">
+    <field name="name">Hello</field>
+    <field name="description">Apartment of Hello World !</field>
+    <field name="image" type="base64" file="realtor/static/description/img/hello_world_img.jpg"></field>
+    <field name="price">125000</field>
+    <field name="available_date">2023-04-12</field>
+    <field name="surface_apartment">150</field>
+    <field name="surface_terrace">15</field>
+  </record>
+
+  <record id="apartment01" model="apartment">
+    <field name="name">Bonjour</field>
+    <field name="description">Apartment of Bonjour !</field>
+    <field name="image" type="base64" file="realtor/static/description/img/2.jpg"></field>
+    <field name="price">133000</field>
+    <field name="available_date">2023-06-01</field>
+    <field name="surface_apartment">80</field>
+    <field name="surface_terrace">10</field>
+  </record>
+
+  <record id="apartment02" model="apartment">
+    <field name="name">Ciao</field>
+    <field name="description">Apartment of Ciao !</field>
+    <field name="image" type="base64" file="realtor/static/description/img/3.jpg"></field>
+    <field name="price">175000</field>
+    <field name="available_date">2023-05-29</field>
+    <field name="surface_apartment">88</field>
+    <field name="surface_terrace">8</field>
+  </record>
+
+  <record id="apartment03" model="apartment">
+    <field name="name">Goiedag</field>
+    <field name="description">Apartment of Goiedag !</field>
+    <field name="image" type="base64" file="realtor/static/description/img/4.jpg"></field>
+    <field name="price">189000</field>
+    <field name="available_date">2023-07-21</field>
+    <field name="surface_apartment">109</field>
+    <field name="surface_terrace">13</field>
+  </record>
+
+  <record id="apartment04" model="apartment">
+    <field name="name">Hola</field>
+    <field name="description">Apartment of Hola !</field>
+    <field name="image" type="base64" file="realtor/static/description/img/5.jpg"></field>
+    <field name="price">112000</field>
+    <field name="available_date">2023-09-02</field>
+    <field name="surface_apartment">132</field>
+    <field name="surface_terrace">14</field>
+  </record>
+
+</odoo>

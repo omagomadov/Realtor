@@ -26,7 +26,9 @@
         'security/ir.model.access.csv',
         'views/menu.xml',
         'views/view.xml',
-        'demo/demo.xml',
+        'demo/realtor_apartment.xml',
+        'demo/realtor_partner.xml',
+        'demo/realtor_stock.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
