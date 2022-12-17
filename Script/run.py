@@ -3,7 +3,7 @@ import getpass
 
 # Connection information
 url = 'http://localhost:8069'
-db = 'dev01'
+db = None
 username = None
 password = None
 
@@ -24,18 +24,19 @@ def welcome():
 def ask_credential():
     global username
     global password
+    global db
     try:
+        db = input("Enter your database : ")
         username = input("Enter your login : ")
         password = getpass.getpass("Enter your password : ")
-        connect(username, password)
+        connect(username, password, db)
     except KeyboardInterrupt:
         print("Exited")
 
 
 # Connects using given credential
-def connect(username, password):
+def connect(username, password, db):
     global url
-    global db
     common = xmlrpc.client.ServerProxy('{}/xmlrpc/2/common'.format(url))
     try:
         uid = common.authenticate(db, username, password, {})
@@ -47,13 +48,15 @@ def connect(username, password):
             search(db, uid, password)
     except ConnectionRefusedError:
         print("Cannot connect to localhost server")
+    except xmlrpc.client.Fault:
+        print("Cannot find database with the name : ", db)
+        ask_credential()
 
 
 def search(db, uid, password):
     global url
     models = xmlrpc.client.ServerProxy('{}/xmlrpc/2/object'.format(url))
     command = ''
-    result = None
     while command != 'quit':
         command = input("Enter the name of an apartment : ")
         result = models.execute_kw(db, uid, password, 'apartment', 'search_read', [[['name', '=', command]]])
