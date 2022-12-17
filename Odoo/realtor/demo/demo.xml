@@ -87,6 +87,9 @@
   <!--stock inventory-->
   <record id="stock_apart_0" model="stock.inventory">
     <field name="name">Apartment Inventory</field>
+    <field name="product_ids"  eval="[(6, 0,
+     [ ref('product_0'),ref('product_1'),ref('product_2'),
+    ref('product_3'),ref('product_4')])]"/>
   </record>
 
 
