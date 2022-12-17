@@ -53,6 +53,7 @@ def connect(username, password, db):
         ask_credential()
 
 
+# Search an apartment
 def search(db, uid, password):
     global url
     models = xmlrpc.client.ServerProxy('{}/xmlrpc/2/object'.format(url))
