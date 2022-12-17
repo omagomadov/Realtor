@@ -1,123 +1,184 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 
-    <!-- Apartments records -->
-    <record id="apartment0" model="apartment">
-        <field name="name">Hello</field>
-        <field name="description">Apartment of Hello World !</field>
-        <field name="image" type="base64" file="realtor/static/description/img/hello_world_img.jpg"></field>
-        <field name="price">125000</field>
-        <field name="available_date">2023-04-12</field>
-        <field name="surface_apartment">150</field>
-        <field name="surface_terrace">15</field>
-    </record>
+  <!-- Apartments records -->
+  <record id="apartment0" model="apartment">
+    <field name="name">Hello</field>
+    <field name="description">Apartment of Hello World !</field>
+    <field name="image" type="base64" file="realtor/static/description/img/hello_world_img.jpg"></field>
+    <field name="price">125000</field>
+    <field name="available_date">2023-04-12</field>
+    <field name="surface_apartment">150</field>
+    <field name="surface_terrace">15</field>
+  </record>
 
-    <record id="apartment01" model="apartment">
-        <field name="name">Bonjour</field>
-        <field name="description">Apartment of Bonjour !</field>
-        <field name="image" type="base64" file="realtor/static/description/img/2.jpg"></field>
-        <field name="price">133000</field>
-        <field name="available_date">2023-06-01</field>
-        <field name="surface_apartment">80</field>
-        <field name="surface_terrace">10</field>
-    </record>
+  <record id="apartment01" model="apartment">
+    <field name="name">Bonjour</field>
+    <field name="description">Apartment of Bonjour !</field>
+    <field name="image" type="base64" file="realtor/static/description/img/2.jpg"></field>
+    <field name="price">133000</field>
+    <field name="available_date">2023-06-01</field>
+    <field name="surface_apartment">80</field>
+    <field name="surface_terrace">10</field>
+  </record>
 
-    <record id="apartment02" model="apartment">
-        <field name="name">Ciao</field>
-        <field name="description">Apartment of Ciao !</field>
-        <field name="image" type="base64" file="realtor/static/description/img/3.jpg"></field>
-        <field name="price">175000</field>
-        <field name="available_date">2023-05-29</field>
-        <field name="surface_apartment">88</field>
-        <field name="surface_terrace">8</field>
-    </record>
+  <record id="apartment02" model="apartment">
+    <field name="name">Ciao</field>
+    <field name="description">Apartment of Ciao !</field>
+    <field name="image" type="base64" file="realtor/static/description/img/3.jpg"></field>
+    <field name="price">175000</field>
+    <field name="available_date">2023-05-29</field>
+    <field name="surface_apartment">88</field>
+    <field name="surface_terrace">8</field>
+  </record>
 
-    <record id="apartment03" model="apartment">
-        <field name="name">Goiedag</field>
-        <field name="description">Apartment of Goiedag !</field>
-        <field name="image" type="base64" file="realtor/static/description/img/4.jpg"></field>
-        <field name="price">189000</field>
-        <field name="available_date">2023-07-21</field>
-        <field name="surface_apartment">109</field>
-        <field name="surface_terrace">13</field>
-    </record>
+  <record id="apartment03" model="apartment">
+    <field name="name">Goiedag</field>
+    <field name="description">Apartment of Goiedag !</field>
+    <field name="image" type="base64" file="realtor/static/description/img/4.jpg"></field>
+    <field name="price">189000</field>
+    <field name="available_date">2023-07-21</field>
+    <field name="surface_apartment">109</field>
+    <field name="surface_terrace">13</field>
+  </record>
 
-    <record id="apartment04" model="apartment">
-        <field name="name">Hola</field>
-        <field name="description">Apartment of Hola !</field>
-        <field name="image" type="base64" file="realtor/static/description/img/5.jpg"></field>
-        <field name="price">112000</field>
-        <field name="available_date">2023-09-02</field>
-        <field name="surface_apartment">132</field>
-        <field name="surface_terrace">14</field>
-    </record>
-
-
-    <!-- Buyers of apartments-->
-    <record model="res.partner" id="buyer01">
-      <field name="name">Oumar Magomadov</field>
-      <field name="apartment" ref="apartment04"/>
-      <field name="offered_price">110000</field>
-    </record>
-
-    <record model="res.partner" id="buyer02">
-      <field name="name">Yacine Mamlouk</field>
-      <field name="apartment" ref="apartment02"/>
-      <field name="offered_price">170000</field>
-    </record>
-
-    <!-- Potentials buyers of apartments-->
-    <record model="res.partner" id="buyer03">
-      <field name="name">Ahmed</field>
-    </record>
-
-    <record model="res.partner" id="buyer04">
-      <field name="name">Mohamed</field>
-    </record>
-
-    <!-- Immobilier ESI-->
-    <record model="res.partner" id="real_eastate01">
-      <field name="name">Immobilier ESI</field>
-    </record>
+  <record id="apartment04" model="apartment">
+    <field name="name">Hola</field>
+    <field name="description">Apartment of Hola !</field>
+    <field name="image" type="base64" file="realtor/static/description/img/5.jpg"></field>
+    <field name="price">112000</field>
+    <field name="available_date">2023-09-02</field>
+    <field name="surface_apartment">132</field>
+    <field name="surface_terrace">14</field>
+  </record>
 
 
-    <!--**************Inventory Module*****************-->
+  <!-- Buyers of apartments-->
+  <record model="res.partner" id="buyer01">
+    <field name="name">Oumar Magomadov</field>
+    <field name="apartment" ref="apartment04" />
+    <field name="offered_price">110000</field>
+  </record>
 
-    <!-- Resource: stock.inventory -->
-    <record id="stock_apartment_inventory_0" model="stock.inventory">
-      <field name="name">Apartment Inventory</field>
-    </record>
+  <record model="res.partner" id="buyer02">
+    <field name="name">Yacine Mamlouk</field>
+    <field name="apartment" ref="apartment02" />
+    <field name="offered_price">170000</field>
+  </record>
 
-    <!-- Resource: stock.inventory.line -->
-    <record id="stock_apartment_inventory_line_1" model="stock.inventory.line">
-        <field name="product_id" ref="product.apartment_02"/>
-        <field name="product_uom_id" ref="uom.product_uom_unit"/>
-        <field name="inventory_id" ref="stock_apartment_inventory_0"/>
-        <field name="product_qty">1</field>
-        <field name="location_id" model="stock.location" eval="obj().env.ref('stock.warehouse0').lot_stock_id.id"/>
-    </record>
+  <!-- Potentials buyers of apartments-->
+  <record model="res.partner" id="buyer03">
+    <field name="name">Ahmed</field>
+  </record>
 
-    <function model="stock.inventory" name="_action_start">
-      <function eval="[[('state','=','draft'),('id', '=', ref('stock_inventory_0'))]]" model="stock.inventory" name="search"/>
-    </function>
+  <record model="res.partner" id="buyer04">
+    <field name="name">Mohamed</field>
+  </record>
 
-    <function model="stock.inventory" name="action_validate">
-      <function eval="[[('state','=','confirm'),('id', '=', ref('stock_inventory_0'))]]" model="stock.inventory" name="search"/>
-    </function>
-
-    <!-- Resource: product.product -->
-    <record id="product.apartment_02" model="product.product">
-      <field name="name">Apartment Ciao</field>
-      <field name="apartment_product" ref="apartment02"/>
-    </record>
-  
-  
-    
+  <!-- Immobilier ESI-->
+  <record model="res.partner" id="real_eastate01">
+    <field name="name">Immobilier ESI</field>
+  </record>
 
 
+  <!--**************Inventory Module*****************-->
 
 
+  <!--stock inventory-->
+  <record id="stock_apart_0" model="stock.inventory">
+    <field name="name">Apartment Inventory</field>
+  </record>
 
+
+  <!--products-->
+  <record id="product_0" model="product.template">
+    <field name="name">Apartment Hello World </field>
+    <field name="apartment_product" ref="apartment0" />
+    <field name="type">product</field>
+  </record>
+
+  <record id="product_1" model="product.template">
+    <field name="name">Apartment Bonjour </field>
+    <field name="apartment_product" ref="apartment01" />
+    <field name="type">product</field>
+  </record>
+
+  <record id="product_2" model="product.template">
+    <field name="name">Apartment Ciao </field>
+    <field name="apartment_product" ref="apartment02" />
+    <field name="type">product</field>
+  </record>
+
+  <record id="product_3" model="product.template">
+    <field name="name">Apartment Goiedag </field>
+    <field name="apartment_product" ref="apartment03" />
+    <field name="type">product</field>
+  </record>
+
+  <record id="product_4" model="product.template">
+    <field name="name">Apartment Hola </field>
+    <field name="apartment_product" ref="apartment04" />
+    <field name="type">product</field>
+  </record>
+
+
+  <!--stock inventory line-->
+  <record id="stock_inventory_line_1" model="stock.inventory.line">
+    <field name="product_id" ref="product_0" />
+    <field name="product_uom_id" ref="uom.product_uom_unit" />
+    <field name="inventory_id" ref="stock_apart_0" />
+    <field name="product_qty">1</field>
+    <field name="location_id" model="stock.location"
+      eval="obj().env.ref('stock.warehouse0').lot_stock_id.id" />
+  </record>
+
+  <record id="stock_inventory_line_2" model="stock.inventory.line">
+    <field name="product_id" ref="product_1" />
+    <field name="product_uom_id" ref="uom.product_uom_unit" />
+    <field name="inventory_id" ref="stock_apart_0" />
+    <field name="product_qty">1</field>
+    <field name="location_id" model="stock.location"
+      eval="obj().env.ref('stock.warehouse0').lot_stock_id.id" />
+  </record>
+
+  <record id="stock_inventory_line_3" model="stock.inventory.line">
+    <field name="product_id" ref="product_2" />
+    <field name="product_uom_id" ref="uom.product_uom_unit" />
+    <field name="inventory_id" ref="stock_apart_0" />
+    <field name="product_qty">1</field>
+    <field name="location_id" model="stock.location"
+      eval="obj().env.ref('stock.warehouse0').lot_stock_id.id" />
+  </record>
+
+  <record id="stock_inventory_line_4" model="stock.inventory.line">
+    <field name="product_id" ref="product_3" />
+    <field name="product_uom_id" ref="uom.product_uom_unit" />
+    <field name="inventory_id" ref="stock_apart_0" />
+    <field name="product_qty">1</field>
+    <field name="location_id" model="stock.location"
+      eval="obj().env.ref('stock.warehouse0').lot_stock_id.id" />
+  </record>
+
+  <record id="stock_inventory_line_5" model="stock.inventory.line">
+    <field name="product_id" ref="product_4" />
+    <field name="product_uom_id" ref="uom.product_uom_unit" />
+    <field name="inventory_id" ref="stock_apart_0" />
+    <field name="product_qty">1</field>
+    <field name="location_id" model="stock.location"
+      eval="obj().env.ref('stock.warehouse0').lot_stock_id.id" />
+  </record>
+
+
+  <!-- Function stock inventory-->
+  <function model="stock.inventory" name="_action_start">
+    <function eval="[[('state','=','draft'),('id', '=', ref('stock_apart_0'))]]"
+      model="stock.inventory" name="search" />
+  </function>
+
+  <function model="stock.inventory" name="action_validate">
+    <function eval="[[('state','=','confirm'),('id', '=', ref('stock_apart_0'))]]"
+      model="stock.inventory" name="search" />
+  </function>
 
 
 </odoo>

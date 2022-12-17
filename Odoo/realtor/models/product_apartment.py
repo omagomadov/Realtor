@@ -7,6 +7,7 @@ class ProductApartment(models.Model):
 
     apartment_product = fields.Many2one('apartment', string="Apartment", ondelete="cascade", required=True)
     list_price = fields.Float(compute='_product_price')
+    
 
     def _product_price(self):
         for record in self:
