@@ -29,6 +29,8 @@ ALLOWED_HOSTS = []
 
 AUTH_USER_MODEL = 'auth_odoo.User'
 
+CRISPY_TEMPLATE_PACK = 'bootstrap'
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -39,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'auth_odoo.apps.AuthOdooConfig',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
