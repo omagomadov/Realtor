@@ -6,7 +6,7 @@ La liste des appartements
 
 {% block content %}
 
-<div class="d-flex justify-content-center ">
+<div class="d-flex justify-content-center">
     <form class="form-inline w-25 border p-4 rounded shadow-sm" action="{% url 'apartments:fetch' %}" method="post">
         {% csrf_token %}
         <div class="form-group m-3">
@@ -29,7 +29,8 @@ La liste des appartements
             <th scope="col">Description</th>
             <th scope="col">Prix</th>
             <th scope="col">Quantité disponible dans le stock</th>
-            <th scope="col">Proposer offre</th>
+            <th scope="col">Montant maximale proposer</th>
+            <th scope="col">Meilleur acheteur</th>
         </tr>
     </thead>
     <tbody>
@@ -39,20 +40,51 @@ La liste des appartements
             <td>{{ product.description }}</td>
             <td>{{ product.price }} €</td>
             <td>{{ product.qty_available }}</td>
-            <td>
-                <div>
-                    <button type="submit" class="btn mb-2 bg-light border border-dark">Soumettre offre</button>
-                </div>
-            </td>
+            <td> {{ product.offer }} €</td>
+            {% if product.buyer %}
+            <td>{{ product.buyer }}</td>
+            {% else %}
+            <td>Pas de meilleur acheteur pour le moment</td>
+            {% endif %}
         </tr>
         {% endfor %}
     </tbody>
-
 </table>
+
+<div class="alert alert-info text-center" role="alert">
+    Vous pouvez proposer une offre pour un appartement
+</div>
+
+<div class="d-flex justify-content-center">
+    <form class="form-inline w-25 border p-4 rounded shadow-sm" action="{% url 'apartments:fetch' %}" method="get">
+        <div class="form-group m-3">
+            <label for="buyer" class="sr-only pb-3">Le nom de l'acheteur</label>
+            <input type="input" class="form-control" id="buyer" name="buyer">
+        </div>
+
+        <div class="form-group m-3">
+            <label for="amount" class="sr-only pb-3">Montant</label>
+            <input type="input" class="form-control" id="amount" name="amount">
+        </div>
+
+        <div class="form-group m-3">
+            <label for="apartment_name" class="sr-only pb-3">L'appartement choisi</label>
+            <select class="form-control" id="apartment_name">
+                {% for product in products %}
+                    <option value={{ product.name }}>{{ product.name }}</option>
+                {%  endfor %}
+              </select>
+        </div>
+
+        <button type="submit" class="btn m-3 bg-light border border-dark">Soumettre offre</button>
+    </form>
+</div>
+
 {% else %}
 <div class="alert alert-light" role="alert">
     <div class="alert alert-info text-center" role="alert">
-        Pour pouvoir récupérer les appartements depuis <b>Odoo</b> en passant par <b>XML-RPC</b>, il est nécessaire de retaper le mot de passe
+        Pour pouvoir récupérer les appartements depuis <b>Odoo</b> en passant par <b>XML-RPC</b>, il est nécessaire de
+        retaper le mot de passe
     </div>
 </div>
 {% endif %}
