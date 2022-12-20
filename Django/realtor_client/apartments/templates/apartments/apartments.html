@@ -11,37 +11,46 @@ La liste des appartements
     re-taper le mot de passe
 </div>
 
-<form class="form-inline w-25 mt-4 ml-4">
+<form class="form-inline w-25 mt-4" action="{% url 'apartments:fetch' %}" method="post">
+    {% csrf_token %}
     <div class="form-group mb-2">
-        <label for="staticEmail2" class="sr-only">Email</label>
-        <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="{{ user.email}}">
+        <label for="email" class="sr-only">Email</label>
+        <input type="text" readonly class="form-control-plaintext" id="email" value="{{ user.email}}">
     </div>
     <div class="form-group mx-sm-3 mb-2">
-        <label for="inputPassword2" class="sr-only">Mot de passe</label>
-        <input type="password" class="form-control" id="inputPassword2">
+        <label for="password" class="sr-only">Mot de passe</label>
+        <input type="password" class="form-control" id="password" name="password">
     </div>
     <button type="submit" class="btn btn-primary mb-2">Récupèrer les appartements</button>
 </form>
 
-{% if apartments %}
-<table class="table table-bordered">
+{% if products %}
+<table class="table table-bordered mt-5">
     <thead>
         <tr>
-            <th scope="col">Nom</th>
+            <th scope="col">Appartement</th>
             <th scope="col">Description</th>
             <th scope="col">Prix</th>
             <th scope="col">Quantité disponible dans le stock</th>
+            <th scope="col">Proposer offre</th>
         </tr>
     </thead>
     <tbody>
-        {% for apartment in apartments %}
+        {% for product in products %}
         <tr>
-            <td>{{ apartment.name }}</td>
-            <td>{{ apartment.description }}</td>
-            <td>{{ apartment.price }}</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.description }}</td>
+            <td>{{ product.price }} €</td>
+            <td>{{ product.qty_available }}</td>
+            <td>
+                <div>
+                    <button type="submit" class="btn mb-2 bg-light border border-dark">Soumettre offre</button>
+                </div>
+            </td>
         </tr>
         {% endfor %}
     </tbody>
+
 </table>
 {% else %}
 <div class="alert alert-light" role="alert">
