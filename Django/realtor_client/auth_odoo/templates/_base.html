@@ -11,14 +11,20 @@
 
     <title>
         {% block title %}
-            Bienvenue sur Realtor
+        Bienvenue sur Realtor
         {% endblock %}
     </title>
 </head>
 
-<body>
+<body class="container-fluid">
 
-    <nav class="navbar navbar-expand-lg bg-light">
+    <div class="m-5">
+        <h1>
+            Realtor Apartments
+        </h1>
+    </div>
+
+    <nav class="navbar navbar-expand-lg bg-light border p-3">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,18 +32,22 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-link active" aria-current="page" href="{% url 'auth_odoo:index' %}">Accueil</a>
+                    <a class="nav-link active m-2" aria-current="page" href="{% url 'auth_odoo:index' %}">Accueil</a>
                     {% if user.is_authenticated %}
-                    <a class="nav-link" href="{% url 'apartments:index' %}">Liste des appartements</a>
-                    <a class="nav-link btn btn-warning" href="{% url 'auth_odoo:logout' %}">Se déconnecter</a>
+                    <a class="nav-link m-2" href="{% url 'apartments:index' %}">Liste des appartements</a>
+                    <a class="nav-link btn btn-warning m-2" href="{% url 'auth_odoo:logout' %}">Se déconnecter</a>
                     {% endif %}
                 </div>
             </div>
         </div>
     </nav>
 
-    {% block content %}
-    {% endblock content %}
+    <div class="p-5">
+        {% block content %}
+        {% endblock content %}
+    </div>
 </body>
+
+<footer class="bg-light text-center border p-3">Realtor Apartments | 2022</footer>
 
 </html>
