@@ -19,7 +19,7 @@ Bienvenue sur Realtor
         <div class="alert alert-danger" role="alert">
             Vous n'êtes pas connecter sur le site Realtor
         </div>
-        <form action="login" method="post">
+        <form action="{% url 'auth_odoo:login' %}" method="post">
             {% csrf_token %}
             {{ form | crispy }}
             <button type="submit" class="btn btn-primary">Se connecter</button>

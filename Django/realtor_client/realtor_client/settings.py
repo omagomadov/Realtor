@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'auth_odoo.apps.AuthOdooConfig',
+    'apartments.apps.ApartmentsConfig',
     'crispy_forms',
 ]
 
