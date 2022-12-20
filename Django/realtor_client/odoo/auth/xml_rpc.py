@@ -1,4 +1,5 @@
 import xmlrpc.client
+import json
 
 # Connection information
 url = 'http://localhost:8069'
@@ -19,31 +20,18 @@ def connect(username, password, db):
         return False
 
 
-# Search an apartment
-def search(db, uid, password):
+# Fetch all products
+def fetch(email, password, db):
     global url
     models = xmlrpc.client.ServerProxy('{}/xmlrpc/2/object'.format(url))
-    command = ''
-    while command != 'quit':
-        command = input("Enter the name of an apartment : ")
-        products = models.execute_kw(db, uid, password, 'product.template', 'search_read', [[
-            ['apartment_product.name', '=', command]
-        ]])
-        if products:
-            for product in products:
-                apartments = models.execute_kw(db, uid, password, 'apartment', 'search_read', [[
-                    ['name', '=', command]
-                ]])
-                for apartment in apartments:
-                    print("=> Name :", apartment['name'])
-                    if not apartment['description']:
-                        print("=> Description : (nothing)")
-                    else:
-                        print("=> Description :", apartment['description'])
-                    print("=> Price : ", apartment['price'], "$")
-                    print("=> Available date :", apartment['available_date'])
-                print("=> Quantity of available apartments", command, ": ", product['qty_available'])
-        elif command != 'quit':
-            print("Cannot find an product with the apartment name", command)
-        else:
-            print("Exited")
+    common = xmlrpc.client.ServerProxy('{}/xmlrpc/2/common'.format(url))
+    uid = common.authenticate(db, email, password, {})
+    result = []
+    products = models.execute_kw(db, uid, password, 'product.template', 'search_read', [[]])
+    for product in products:
+        apartment = models.execute_kw(db, uid, password, 'apartment', 'search_read', [[ 
+            ['id', '=', product['apartment_product'][0] ] 
+            ]])
+        apartment[0]['qty_available'] = product['qty_available']
+        result.append(apartment[0])
+    return result
