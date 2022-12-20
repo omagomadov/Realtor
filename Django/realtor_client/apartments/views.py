@@ -1,4 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 def index(request):
-    return render(request, 'apartments/apartments.html')
+    if not request.user.is_authenticated:
+        return redirect('auth_odoo:index')
+    else:
+        return render(request, 'apartments/apartments.html')
