@@ -44,12 +44,12 @@ La liste des appartements
     <form class="form-inline w-25 border p-4 rounded shadow-sm" action="{% url 'apartments:offer' %}" method="get">
         <div class="form-group m-3">
             <label for="buyer" class="sr-only pb-3">Le nom de l'acheteur</label>
-            <input type="input" class="form-control" id="buyer" name="buyer">
+            <input type="input" class="form-control" id="buyer" name="buyer" required>
         </div>
 
         <div class="form-group m-3">
             <label for="amount" class="sr-only pb-3">Montant</label>
-            <input type="number" class="form-control" id="amount" name="amount">
+            <input type="number" class="form-control" id="amount" name="amount" required>
         </div>
 
         <div class="form-group m-3">
