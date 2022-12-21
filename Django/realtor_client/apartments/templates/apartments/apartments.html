@@ -41,7 +41,7 @@ La liste des appartements
 </div>
 
 <div class="d-flex justify-content-center">
-    <form class="form-inline w-25 border p-4 rounded shadow-sm" action="{% url 'apartments:offer' %}" method="get">
+    <form class="form-inline w-25 border p-4 rounded shadow-sm" action="submit/" method="get">
         <div class="form-group m-3">
             <label for="buyer" class="sr-only pb-3">Le nom de l'acheteur</label>
             <input type="input" class="form-control" id="buyer" name="buyer" required>
@@ -54,7 +54,7 @@ La liste des appartements
 
         <div class="form-group m-3">
             <label for="apartment_name" class="sr-only pb-3">L'appartement choisi</label>
-            <select class="form-control" id="apartment_name">
+            <select class="form-control" name="apartment_name">
                 {% for product in products %}
                     <option value={{ product.name }}>{{ product.name }}</option>
                 {%  endfor %}

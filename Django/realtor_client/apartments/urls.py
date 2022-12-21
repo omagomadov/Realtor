@@ -6,5 +6,5 @@ app_name = 'apartments'
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('', views.index, name='offer'),
+    path('submit/', views.offer, name='offer'),
 ]
