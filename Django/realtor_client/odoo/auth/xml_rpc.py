@@ -47,10 +47,8 @@ def submit(email, password, db, name, offer, apartment):
     apartment_id = [fetched_apartment[0]['id'], fetched_apartment[0]['name']]
 
     if fetched_apartment[0]['offer'] < int(offer) and ((fetched_apartment[0]['offer'] / 100) * 90) < int(offer):
-        print('Given price is higher')
         search_user = models.execute_kw(db, uid, password,'res.partner', 'search_read', [[['name', '=', name]]])
         if len(search_user) == 0:
-            print('User does not exist')
             models.execute_kw(db, uid, password, 'res.partner', 'create', [{'name': name}])
             search_user = models.execute_kw(db, uid, password,'res.partner', 'search_read', [[['name', '=', name]]])
         models.execute_kw(db, uid, password, 'res.partner', 'write', [search_user[0]['id'], {'apartment' : apartment_id[0], 'offered_price': int(offer)}])
