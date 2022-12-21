@@ -5,11 +5,8 @@ def index(request):
     if not request.user.is_authenticated:
         return redirect('auth_odoo:index')
     else:
-        return render(request, 'apartments/apartments.html')
-
-def fetch(request):
-    if auth(request.user.email, request.POST['password'], 'dev01'):
-        products = retrieve_datat(request.user.email, request.POST['password'], 'dev01')
+        products = retrieve_datat(request.user.email, request.user.password_odoo, 'dev01')
         return render(request, 'apartments/apartments.html', {'products' : products})
-    else:
-        return render(request, 'apartments/apartments.html')
+
+def offer(request):
+    return render(request, 'apartments/apartments.html')

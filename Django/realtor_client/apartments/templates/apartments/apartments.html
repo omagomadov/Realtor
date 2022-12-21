@@ -6,21 +6,6 @@ La liste des appartements
 
 {% block content %}
 
-<div class="d-flex justify-content-center">
-    <form class="form-inline w-25 border p-4 rounded shadow-sm" action="{% url 'apartments:fetch' %}" method="post">
-        {% csrf_token %}
-        <div class="form-group m-3">
-            <label for="email" class="sr-only">Email</label>
-            <input type="text" readonly class="form-control-plaintext" id="email" value="{{ user.email}}">
-        </div>
-        <div class="form-group m-3">
-            <label for="password" class="sr-only pb-3">Mot de passe</label>
-            <input type="password" class="form-control" id="password" name="password">
-        </div>
-        <button type="submit" class="btn btn-primary m-3">Récupérer les appartements</button>
-    </form>
-</div>
-
 {% if products %}
 <table class="table table-bordered mt-5 text-center">
     <thead>
@@ -56,7 +41,7 @@ La liste des appartements
 </div>
 
 <div class="d-flex justify-content-center">
-    <form class="form-inline w-25 border p-4 rounded shadow-sm" action="{% url 'apartments:fetch' %}" method="get">
+    <form class="form-inline w-25 border p-4 rounded shadow-sm" action="{% url 'apartments:offer' %}" method="get">
         <div class="form-group m-3">
             <label for="buyer" class="sr-only pb-3">Le nom de l'acheteur</label>
             <input type="input" class="form-control" id="buyer" name="buyer">
@@ -64,7 +49,7 @@ La liste des appartements
 
         <div class="form-group m-3">
             <label for="amount" class="sr-only pb-3">Montant</label>
-            <input type="input" class="form-control" id="amount" name="amount">
+            <input type="number" class="form-control" id="amount" name="amount">
         </div>
 
         <div class="form-group m-3">
@@ -80,13 +65,6 @@ La liste des appartements
     </form>
 </div>
 
-{% else %}
-<div class="alert alert-light" role="alert">
-    <div class="alert alert-info text-center" role="alert">
-        Pour pouvoir récupérer les appartements depuis <b>Odoo</b> en passant par <b>XML-RPC</b>, il est nécessaire de
-        retaper le mot de passe
-    </div>
-</div>
 {% endif %}
 
 {% endblock %}

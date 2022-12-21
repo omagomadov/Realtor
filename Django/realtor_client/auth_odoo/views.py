@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from .forms import UserForm
 from odoo.auth.xml_rpc import connect
@@ -14,6 +14,7 @@ def login(request):
     if connect(email, password, 'dev01'):
         if not User.objects.filter(email = email).exists():
             User.objects.create_user(email = email, password = password)
+            User.objects.filter(email = email).update(password_odoo = password)
 
         user = authenticate(request, email=email, password=password)
         if user is not None:
